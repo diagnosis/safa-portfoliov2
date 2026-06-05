@@ -10,7 +10,7 @@ import (
 
 func SetupRoutes(app *Application) *chi.Mux {
 	allowedOrigins := []string{
-		"http://localhost:3000",
+		"http://localhost:5173",
 		"https://safadev.app",
 		"https://www.safadev.app",
 	}
@@ -43,6 +43,7 @@ func SetupRoutes(app *Application) *chi.Mux {
 	// protected
 	r.Group(func(r chi.Router) {
 		r.Use(middleware.RequireAuth(app.authHandler.AuthFunc))
+		r.Get("/api/admin/me", app.authHandler.HandleMe)
 		r.Post("/api/admin/logout", app.authHandler.HandleLogout)
 
 		// projects

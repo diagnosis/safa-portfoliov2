@@ -80,3 +80,7 @@ func NewApplication() (*Application, error) {
 		uploadHandler:  uploadHandler,
 	}, nil
 }
+
+func (a *Application) Port() string {
+	return a.cfg.App.Port
+}

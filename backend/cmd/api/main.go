@@ -22,6 +22,7 @@ func main() {
 	}
 
 	ctx, cancel := context.WithCancel(context.Background())
+
 	defer cancel()
 
 	app, err := application.NewApplication()
@@ -33,7 +34,7 @@ func main() {
 	r := application.SetupRoutes(app)
 
 	server := &http.Server{
-		Addr:              fmt.Sprintf(":%s", "8080"),
+		Addr:              fmt.Sprintf(":%s", app.Port()),
 		Handler:           r,
 		ReadHeaderTimeout: 10 * time.Second,
 		WriteTimeout:      0,

@@ -23,6 +23,13 @@ type createProjectRequest struct {
 	AppStoreURL  *string  `json:"app_store_url"`
 	PlayStoreURL *string  `json:"play_store_url"`
 	ImageURL     *string  `json:"image_url"`
+	Screenshots  []string `json:"screenshots"`
+	Problem      *string  `json:"problem"`
+	Solution     *string  `json:"solution"`
+	Features     []string `json:"features"`
+	Challenges   []string `json:"challenges"`
+	Learnings    []string `json:"learnings"`
+	Architecture *string  `json:"architecture"`
 	Featured     bool     `json:"featured"`
 	Published    bool     `json:"published"`
 }

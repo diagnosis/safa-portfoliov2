@@ -25,6 +25,13 @@ type Project struct {
 	AppStoreURL  *string   `json:"app_store_url,omitempty"`
 	PlayStoreURL *string   `json:"play_store_url,omitempty"`
 	ImageURL     *string   `json:"image_url,omitempty"`
+	Screenshots  []string  `json:"screenshots"`
+	Problem      *string   `json:"problem,omitempty"`
+	Solution     *string   `json:"solution,omitempty"`
+	Features     []string  `json:"features"`
+	Challenges   []string  `json:"challenges"`
+	Learnings    []string  `json:"learnings"`
+	Architecture *string   `json:"architecture,omitempty"`
 	Featured     bool      `json:"featured"`
 	Published    bool      `json:"published"`
 	CreatedAt    time.Time `json:"created_at"`
@@ -49,13 +56,17 @@ func NewPGProjectStore(pool *pgxpool.Pool) *PGProjectStore {
 
 func (s *PGProjectStore) Create(ctx context.Context, p *Project) (*Project, error) {
 	row := s.pool.QueryRow(ctx, `
-		INSERT INTO projects 
-			(title, slug, description, body, tech_stack, platforms, live_url, repo_url, app_store_url, play_store_url, image_url, featured, published)
-		VALUES 
-			($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)
-		RETURNING *
-	`, p.Title, p.Slug, p.Description, p.Body, p.TechStack, p.Platforms,
-		p.LiveURL, p.RepoURL, p.AppStoreURL, p.PlayStoreURL, p.ImageURL, p.Featured, p.Published)
+        INSERT INTO projects 
+            (title, slug, description, body, tech_stack, platforms, live_url, repo_url,
+             app_store_url, play_store_url, image_url, featured, published,
+             screenshots, problem, solution, features, challenges, learnings, architecture)
+        VALUES 
+            ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20)
+        RETURNING *
+    `, p.Title, p.Slug, p.Description, p.Body, p.TechStack, p.Platforms,
+		p.LiveURL, p.RepoURL, p.AppStoreURL, p.PlayStoreURL, p.ImageURL,
+		p.Featured, p.Published,
+		p.Screenshots, p.Problem, p.Solution, p.Features, p.Challenges, p.Learnings, p.Architecture)
 
 	project, err := scanProject(row)
 	if err != nil {
@@ -100,17 +111,21 @@ func (s *PGProjectStore) List(ctx context.Context, publishedOnly bool) ([]*Proje
 
 func (s *PGProjectStore) Update(ctx context.Context, p *Project) (*Project, error) {
 	row := s.pool.QueryRow(ctx, `
-		UPDATE projects SET
-			title = $1, slug = $2, description = $3, body = $4,
-			tech_stack = $5, platforms = $6, live_url = $7, repo_url = $8,
-			app_store_url = $9, play_store_url = $10, image_url = $11,
-			featured = $12, published = $13, updated_at = now()
-		WHERE id = $14
-		RETURNING *
-	`, p.Title, p.Slug, p.Description, p.Body, p.TechStack, p.Platforms,
+        UPDATE projects SET
+            title = $1, slug = $2, description = $3, body = $4,
+            tech_stack = $5, platforms = $6, live_url = $7, repo_url = $8,
+            app_store_url = $9, play_store_url = $10, image_url = $11,
+            featured = $12, published = $13,
+            screenshots = $14, problem = $15, solution = $16,
+            features = $17, challenges = $18, learnings = $19, architecture = $20,
+            updated_at = now()
+        WHERE id = $21
+        RETURNING *
+    `, p.Title, p.Slug, p.Description, p.Body, p.TechStack, p.Platforms,
 		p.LiveURL, p.RepoURL, p.AppStoreURL, p.PlayStoreURL, p.ImageURL,
-		p.Featured, p.Published, p.ID)
-
+		p.Featured, p.Published,
+		p.Screenshots, p.Problem, p.Solution, p.Features, p.Challenges, p.Learnings, p.Architecture,
+		p.ID)
 	return scanProject(row)
 }
 
@@ -137,6 +152,8 @@ func scanProject(s scanner) (*Project, error) {
 		&p.AppStoreURL, &p.ImageURL,
 		&p.Featured, &p.Published, &p.CreatedAt, &p.UpdatedAt,
 		&p.PlayStoreURL,
+		&p.Screenshots, &p.Problem, &p.Solution,
+		&p.Features, &p.Challenges, &p.Learnings, &p.Architecture,
 	)
 	if err != nil {
 		if errors.Is(err, pgx.ErrNoRows) {

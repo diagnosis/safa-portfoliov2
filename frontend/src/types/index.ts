@@ -11,6 +11,13 @@ export interface Project {
     app_store_url?: string
     play_store_url?: string
     image_url?: string
+    screenshots: string[]
+    problem?: string
+    solution?: string
+    features: string[]
+    challenges: string[]
+    learnings: string[]
+    architecture?: string
     featured: boolean
     published: boolean
     created_at: string

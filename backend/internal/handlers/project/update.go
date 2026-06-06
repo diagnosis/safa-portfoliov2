@@ -44,6 +44,18 @@ func (h *ProjectHandler) HandleUpdate(w http.ResponseWriter, r *http.Request) {
 	if req.Platforms == nil {
 		req.Platforms = []string{}
 	}
+	if req.Screenshots == nil {
+		req.Screenshots = []string{}
+	}
+	if req.Features == nil {
+		req.Features = []string{}
+	}
+	if req.Challenges == nil {
+		req.Challenges = []string{}
+	}
+	if req.Learnings == nil {
+		req.Learnings = []string{}
+	}
 
 	project, err := h.store.Update(ctx, &projectstore.Project{
 		ID:           id,
@@ -58,9 +70,17 @@ func (h *ProjectHandler) HandleUpdate(w http.ResponseWriter, r *http.Request) {
 		AppStoreURL:  req.AppStoreURL,
 		PlayStoreURL: req.PlayStoreURL,
 		ImageURL:     req.ImageURL,
+		Screenshots:  req.Screenshots,
+		Problem:      req.Problem,
+		Solution:     req.Solution,
+		Features:     req.Features,
+		Challenges:   req.Challenges,
+		Learnings:    req.Learnings,
+		Architecture: req.Architecture,
 		Featured:     req.Featured,
 		Published:    req.Published,
 	})
+
 	if err != nil {
 		logger.Error(ctx, "failed to update project", "err", err)
 		responder.Error(w, err, correlationID)

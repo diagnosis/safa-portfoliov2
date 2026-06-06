@@ -49,7 +49,7 @@ func SetupRoutes(app *Application) *chi.Mux {
 		// projects
 		r.Get("/api/admin/projects", app.projectHandler.HandleAdminList)
 		r.Post("/api/admin/projects", app.projectHandler.HandleCreate)
-		r.Put("/api/admin/projects/{id}", app.projectHandler.HandleUpdate)
+		r.Patch("/api/admin/projects/{id}", app.projectHandler.HandleUpdate)
 		r.Delete("/api/admin/projects/{id}", app.projectHandler.HandleDelete)
 
 		// blog

@@ -12,7 +12,7 @@ func SetupRoutes(app *Application) *chi.Mux {
 	allowedOrigins := []string{
 		"http://localhost:5173",
 		"https://safadev.app",
-		"https://www.safadev.app",
+		"https://portfolio.safadev.app",
 	}
 
 	r := chi.NewRouter()

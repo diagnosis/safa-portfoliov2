@@ -3,6 +3,8 @@ import { useQuery } from '@tanstack/react-query'
 import { blogService } from '@/services/blogService.ts'
 import { Nav } from '@/components/portfolio/Nav.tsx'
 import { Footer } from '@/components/portfolio/Footer.tsx'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'  // tables, strikethrough, code blocks
 
 export const Route = createFileRoute('/blog/$slug')({
     component: BlogPost,
@@ -68,16 +70,16 @@ function BlogPost() {
 
                 {data.body && (
                     <div className="prose prose-invert prose-lg max-w-none
-            prose-headings:text-white prose-headings:font-bold
-            prose-p:text-white/60 prose-p:leading-relaxed
-            prose-a:text-[#5bbf8a] prose-a:no-underline hover:prose-a:underline
-            prose-code:text-[#5bbf8a] prose-code:bg-[#161b22] prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded
-            prose-pre:bg-[#161b22] prose-pre:border prose-pre:border-white/[0.06]
-            prose-strong:text-white
-            prose-blockquote:border-[#5bbf8a] prose-blockquote:text-white/40">
-                        {data.body.split('\n').map((line, i) => (
-                            <p key={i}>{line}</p>
-                        ))}
+        prose-headings:text-white prose-headings:font-bold
+        prose-p:text-white/60 prose-p:leading-relaxed
+        prose-a:text-[#5bbf8a] prose-a:no-underline hover:prose-a:underline
+        prose-code:text-[#5bbf8a] prose-code:bg-[#161b22] prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded
+        prose-pre:bg-[#161b22] prose-pre:border prose-pre:border-white/[0.06]
+        prose-strong:text-white
+        prose-blockquote:border-[#5bbf8a] prose-blockquote:text-white/40">
+                        <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                            {data.body}
+                        </ReactMarkdown>
                     </div>
                 )}
             </article>

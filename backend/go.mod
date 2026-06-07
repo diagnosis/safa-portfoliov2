@@ -3,7 +3,7 @@ module github.com/diagnosis/safa-portfolio
 go 1.26.2
 
 require (
-	github.com/diagnosis/go-toolkit v1.2.1
+	github.com/diagnosis/go-toolkit v1.2.3
 	github.com/go-chi/chi/v5 v5.3.0
 	github.com/google/uuid v1.6.0
 	github.com/jackc/pgx/v5 v5.10.0

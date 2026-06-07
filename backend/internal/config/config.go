@@ -15,6 +15,7 @@ type Config struct {
 	Zepto    ZeptoConfig
 	Upload   UploadConfig
 	AI       AIConfig
+	Resend   ResendConfig
 }
 
 type DatabaseConfig struct {
@@ -61,6 +62,10 @@ type UploadConfig struct {
 
 type AIConfig struct {
 	AnthropicAPIKey string
+}
+type ResendConfig struct {
+	APIKey    string
+	FromEmail string
 }
 
 func Load() (*Config, error) {
@@ -133,6 +138,10 @@ func Load() (*Config, error) {
 		},
 		AI: AIConfig{
 			AnthropicAPIKey: anthropicKey,
+		},
+		Resend: ResendConfig{
+			APIKey:    getEnv("RESEND_API_KEY", ""),
+			FromEmail: getEnv("RESEND_FROM_EMAIL", "onboarding@resend.dev"),
 		},
 	}, nil
 }

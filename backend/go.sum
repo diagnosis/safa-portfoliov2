@@ -3,6 +3,8 @@ github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/diagnosis/go-toolkit v1.2.1 h1:Wl0uLzpU1akGL2+D1Y6zzKi/5Rg0Wd4PhFYwqsdfgr4=
 github.com/diagnosis/go-toolkit v1.2.1/go.mod h1:EfafSd3k0ABaVIYI/i+MlBVir2DSyM0qqTDB1IOAz0Q=
+github.com/diagnosis/go-toolkit v1.2.3 h1:bhQWO3CS5hG7Ys6nqudh3Dq639FYdnxxriXuFuKs/Wo=
+github.com/diagnosis/go-toolkit v1.2.3/go.mod h1:EfafSd3k0ABaVIYI/i+MlBVir2DSyM0qqTDB1IOAz0Q=
 github.com/go-chi/chi/v5 v5.3.0 h1:halUjDxhshgXHMrao5bB8eNBXo/rnzwr8m5m36glehM=
 github.com/go-chi/chi/v5 v5.3.0/go.mod h1:R+tYY2hNuVUUjxoPtqUdgBqevM9s9njzkTLutVsOCto=
 github.com/golang-jwt/jwt/v5 v5.3.1 h1:kYf81DTWFe7t+1VvL7eS+jKFVWaUnK9cB1qbwn63YCY=

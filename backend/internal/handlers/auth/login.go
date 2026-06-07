@@ -57,13 +57,10 @@ func (h *AuthHandler) HandleLogin(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	m := mailer.NewSMTPMailer(mailer.NewConfig(
-		"smtp.gmail.com",
-		587,
-		h.cfg.Zepto.UserName,
-		h.cfg.Zepto.APIKey,
-		h.cfg.Zepto.FromEmail,
-	))
+	m := mailer.NewResendMailer(
+		h.cfg.Resend.APIKey,
+		h.cfg.Resend.FromEmail,
+	)
 	body := `<h2>Your login code</h2><p style="font-size:32px;letter-spacing:8px;"><strong>` + code + `</strong></p><p>Expires in 10 minutes.</p>`
 	if err := m.Send([]string{req.Email}, "Portfolio Admin Login Code", body); err != nil {
 		logger.Error(ctx, "failed to send email", "err", err)

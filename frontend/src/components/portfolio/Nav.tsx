@@ -31,6 +31,9 @@ export function Nav() {
                     <Link to="/blog" className="text-white/40 hover:text-white text-sm transition-colors">
                         <span className="text-[#5bbf8a]">#</span>blog
                     </Link>
+                    <Link to="/resume" className="text-white/40 hover:text-white text-sm transition-colors">
+                        <span className="text-[#5bbf8a]">#</span>resume
+                    </Link>
                     <a href={isHome ? '#contact' : '/#contact'}
                        className="px-4 py-1.5 rounded-lg border border-[#5bbf8a]/40 text-[#5bbf8a] text-sm hover:bg-[#5bbf8a]/10 transition-colors">
                         contact ↗

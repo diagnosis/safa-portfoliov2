@@ -59,6 +59,18 @@ func (h *ProjectHandler) HandleCreate(w http.ResponseWriter, r *http.Request) {
 		req.Platforms = []string{}
 	}
 
+	if req.Screenshots == nil {
+		req.Screenshots = []string{}
+	}
+	if req.Features == nil {
+		req.Features = []string{}
+	}
+	if req.Challenges == nil {
+		req.Challenges = []string{}
+	}
+	if req.Learnings == nil {
+		req.Learnings = []string{}
+	}
 	project, err := h.store.Create(ctx, &projectstore.Project{
 		Title:        req.Title,
 		Slug:         req.Slug,
@@ -71,6 +83,13 @@ func (h *ProjectHandler) HandleCreate(w http.ResponseWriter, r *http.Request) {
 		AppStoreURL:  req.AppStoreURL,
 		PlayStoreURL: req.PlayStoreURL,
 		ImageURL:     req.ImageURL,
+		Screenshots:  req.Screenshots,
+		Problem:      req.Problem,
+		Solution:     req.Solution,
+		Features:     req.Features,
+		Challenges:   req.Challenges,
+		Learnings:    req.Learnings,
+		Architecture: req.Architecture,
 		Featured:     req.Featured,
 		Published:    req.Published,
 	})

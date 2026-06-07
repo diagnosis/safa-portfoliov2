@@ -6,6 +6,9 @@ import { Footer } from '@/components/portfolio/Footer.tsx'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'  // tables, strikethrough, code blocks
 
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
+import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism'
+
 export const Route = createFileRoute('/blog/$slug')({
     component: BlogPost,
 })
@@ -77,7 +80,31 @@ function BlogPost() {
         prose-pre:bg-[#161b22] prose-pre:border prose-pre:border-white/[0.06]
         prose-strong:text-white
         prose-blockquote:border-[#5bbf8a] prose-blockquote:text-white/40">
-                        <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                        <ReactMarkdown
+                            remarkPlugins={[remarkGfm]}
+                            components={{
+                                code({ node, inline, className, children, ...props }: any) {
+                                    const match = /language-(\w+)/.exec(className || '')
+                                    return !inline && match ? (
+                                        <SyntaxHighlighter
+                                            style={oneDark}
+                                            language={match[1]}
+                                            PreTag="div"
+                                            customStyle={{
+                                                background: '#161b22',
+                                                border: '1px solid rgba(255,255,255,0.06)',
+                                                borderRadius: '6px',
+                                                fontSize: '0.875rem',
+                                            }}
+                                        >
+                                            {String(children).replace(/\n$/, '')}
+                                        </SyntaxHighlighter>
+                                    ) : (
+                                        <code className={className} {...props}>{children}</code>
+                                    )
+                                },
+                            }}
+                        >
                             {data.body}
                         </ReactMarkdown>
                     </div>

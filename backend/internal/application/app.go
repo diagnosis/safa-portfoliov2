@@ -8,6 +8,7 @@ import (
 	"github.com/diagnosis/go-toolkit/secure"
 	"github.com/diagnosis/safa-portfolio/internal/config"
 	"github.com/diagnosis/safa-portfolio/internal/database"
+	aihandler "github.com/diagnosis/safa-portfolio/internal/handlers/ai"
 	authhandler "github.com/diagnosis/safa-portfolio/internal/handlers/auth"
 	bloghandler "github.com/diagnosis/safa-portfolio/internal/handlers/blog"
 	projecthandler "github.com/diagnosis/safa-portfolio/internal/handlers/project"
@@ -30,6 +31,7 @@ type Application struct {
 	projectHandler *projecthandler.ProjectHandler
 	blogHandler    *bloghandler.BlogHandler
 	uploadHandler  *uploadhandler.UploadHandler
+	aiHandler      *aihandler.AIHandler
 }
 
 func NewApplication() (*Application, error) {
@@ -67,6 +69,7 @@ func NewApplication() (*Application, error) {
 	projectHandler := projecthandler.NewProjectHandler(projectStore)
 	blogHandler := bloghandler.NewBlogHandler(blogStore)
 	uploadHandler := uploadhandler.NewUploadHandler(cfg)
+	aiHandler := aihandler.NewAIHandler(cfg)
 	return &Application{
 		jwt:          jwt,
 		cfg:          cfg,
@@ -78,6 +81,7 @@ func NewApplication() (*Application, error) {
 		projectHandler: projectHandler,
 		blogHandler:    blogHandler,
 		uploadHandler:  uploadHandler,
+		aiHandler:      aiHandler,
 	}, nil
 }
 

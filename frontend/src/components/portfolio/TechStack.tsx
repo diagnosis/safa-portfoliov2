@@ -20,7 +20,7 @@ export function TechStack() {
                     <p className="text-white/40 mt-2">The kit I reach for to take an idea from schema to deploy.</p>
                 </div>
 
-                <div className="grid grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {Object.entries(STACK).map(([cat, items]) => (
                         <div key={cat} className="bg-[#161b22] border border-white/[0.06] rounded-xl p-6">
                             <div className="text-[#5bbf8a]/60 font-mono text-xs mb-4 uppercase tracking-widest">{cat}</div>

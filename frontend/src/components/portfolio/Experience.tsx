@@ -64,7 +64,7 @@ export function Experience() {
                     <p className="text-white/40 mt-2">Nine years making sure software works — now making the software.</p>
                 </div>
 
-                <div className="grid grid-cols-[1fr_2fr] gap-12">
+                <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-8 md:gap-12">
 
                     {/* stats */}
                     <div className="flex flex-col gap-6">

@@ -118,19 +118,19 @@ export function Projects({ projects, loading }: { projects: Project[]; loading: 
                         </p>
                     </div>
                     <span className="text-white/20 font-mono text-sm">
-            {loading ? '...' : `${projects.length} projects · 2024–2025`}
+            {loading ? '...' : `${projects.length} projects · 2025–2026`}
           </span>
                 </div>
 
                 {/* grid */}
                 {loading ? (
-                    <div className="grid grid-cols-2 gap-5">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                         {[1,2,3,4].map(i => (
                             <div key={i} className="h-72 bg-[#161b22] border border-white/[0.06] rounded-xl animate-pulse" />
                         ))}
                     </div>
                 ) : (
-                    <div className="grid grid-cols-2 gap-5">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                         {projects.map((p, i) => <ProjectCard key={p.id} project={p} index={i} />)}
                     </div>
                 )}

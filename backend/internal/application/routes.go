@@ -37,6 +37,8 @@ func SetupRoutes(app *Application) *chi.Mux {
 	r.Get("/api/blog", app.blogHandler.HandleList)
 	r.Get("/api/blog/{slug}", app.blogHandler.HandleGet)
 
+	r.With(middleware.RateLimit(5, 5, time.Minute)).Post("/api/ai/chat", app.aiHandler.HandleChat)
+
 	// serve uploaded files
 	uploadsDir := http.Dir(app.cfg.Upload.Dir)
 	r.Handle("/uploads/*", http.StripPrefix("/uploads/", http.FileServer(uploadsDir)))

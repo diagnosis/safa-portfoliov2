@@ -1,2 +1,19 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
+
+@layer base {
+    /* tighter mono on mobile */
+    @media (max-width: 768px) {
+        .font-mono {
+            letter-spacing: -0.01em;
+        }
+
+        h1 {
+            line-height: 1.05;
+        }
+
+        h2 {
+            line-height: 1.15;
+        }
+    }
+}

@@ -20,7 +20,7 @@ const LINKS = [
 export function Contact() {
     return (
         <section id="contact" className="py-24 border-t border-white/[0.04]">
-            <div className="max-w-6xl mx-auto px-6">
+            <div className="max-w-6xl mx-auto px-4 md:px-6">
                 <div className="max-w-2xl">
                     <div className="flex items-center gap-2 mb-6">
                         <span className="text-[#5bbf8a] font-mono text-sm">#</span>

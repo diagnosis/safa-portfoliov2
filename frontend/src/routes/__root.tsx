@@ -3,6 +3,7 @@
 import {createRootRouteWithContext, Outlet} from "@tanstack/react-router";
 import type {QueryClient} from "@tanstack/react-query";
 import {NotFound} from "@/components/app/NotFound.tsx";
+import {AskSafa} from "@/components/portfolio/AskSafa.tsx";
 
 
 export const Route = createRootRouteWithContext<{
@@ -16,6 +17,7 @@ function RootLayout() {
     return (
         <div>
             <Outlet />
+            <AskSafa/>
         </div>
     )
 }

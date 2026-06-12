@@ -8,7 +8,7 @@ export function Nav() {
     const menuRef = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
-        function handleClickOutside(e: MouseEvent) {
+        function handleClickOutside(e: Event) {
             if (menuRef.current && !menuRef.current.contains(e.target as Node)) {
                 setMenuOpen(false)
             }

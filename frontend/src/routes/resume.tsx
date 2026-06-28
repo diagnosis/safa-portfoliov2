@@ -105,7 +105,7 @@ function Resume() {
                             </a>
                         </div>
                     </div>
-                    <a href="https://portfolio-api.safadev.app/uploads/safa_demirkan_resume.pdf"
+                    <a href="https://portfolio-api.safadev.app/uploads/safademirkaan_resume.docx"
                        target="_blank" rel="noopener noreferrer"
                        className="px-5 py-2.5 rounded-lg bg-[#5bbf8a]/20 border border-[#5bbf8a]/30 text-[#5bbf8a] text-sm font-mono hover:bg-[#5bbf8a]/30 transition-colors flex-shrink-0">
                         download pdf ↓
